@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 const token = '6250287816:AAHAlTac4TNrvm05O7YH87kDo9gl1YoetjA';
-const webAppUrl = 'https://effervescent-treacle-277ec0.netlify.app/'
+const webAppUrl = 'https://peaceful-axolotl-1e9281.netlify.app'
 
 const bot = new TelegramBot(token, { polling: true });
 
@@ -10,7 +10,7 @@ bot.on('message', async (msg) => {
     const text = msg.text;
 
     if (text === '/keyboard') {
-        await bot.sendMessage(chatId, 'Заполните', {
+        await bot.sendMessage(chatId, 'Заполните форму', {
             reply_markup: {
                 keyboard: [
                     [{text: 'Заполнить Форму', web_app: {url: webAppUrl}}]

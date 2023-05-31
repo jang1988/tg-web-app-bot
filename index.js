@@ -10,7 +10,7 @@ bot.on('message', async (msg) => {
     const text = msg.text;
 
     if (text === '/keyboard') {
-        await bot.sendMessage(chatId, 'Заполните форму', {
+        await bot.sendMessage(chatId, 'Заполните', {
             reply_markup: {
                 keyboard: [
                     [{text: 'Заполнить Форму', web_app: {url: webAppUrl}}]

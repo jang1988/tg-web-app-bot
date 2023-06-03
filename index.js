@@ -38,7 +38,7 @@ bot.on('message', async (msg) => {
             await bot.sendMessage(chatId, 'Ваша страна:' + data?.country)
 
             setTimeout(async () => {
-                await bot.sendMessage(chatId, 'Ваша страна:' + data?.street)
+                await bot.sendMessage(chatId, 'Ваша улица:' + data?.street)
             }, 3000)
         } catch (error) {
             console.log('error: ', error)    

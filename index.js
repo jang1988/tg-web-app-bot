@@ -6,6 +6,7 @@ const webAppUrl = 'https://peaceful-axolotl-1e9281.netlify.app'
 const bot = new TelegramBot(token, { polling: true });
 
 bot.on('message', async (msg) => {
+    console.log('msg: ', msg)
     const chatId = msg.chat.id;
     const text = msg.text;
 
@@ -20,13 +21,28 @@ bot.on('message', async (msg) => {
     }
 
     if (text === '/inline') {
-        await bot.sendMessage(chatId, 'Заполните форму', {
+        await bot.sendMessage(chatId, 'Product List', {
             reply_markup: {
                 inline_keyboard: [
-                    [{text: 'Заполнить Форму', web_app: {url: webAppUrl}}]
+                    [{text: 'Product List', web_app: {url: webAppUrl}}]
                 ]
             }
         })
+    }
+
+    if (msg?.web_app_data?.data) {
+        try {
+            const data = JSON.parse(msg?.web_app_data?.data)
+
+            await bot.sendMessage(chatId, 'Спасибо')
+            await bot.sendMessage(chatId, 'Ваша страна:' + data?.country)
+
+            setTimeout(async () => {
+                await bot.sendMessage(chatId, 'Ваша страна:' + data?.street)
+            }, 3000)
+        } catch (error) {
+            console.log('error: ', error)    
+        }
     }
 
     bot.sendMessage(chatId, 'Вот так вот' + ' ' + msg.chat.first_name);
